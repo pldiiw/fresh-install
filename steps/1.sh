@@ -94,6 +94,33 @@ tar xvzf go-ipfs_v0.4.3_linux_amd64.tar.gz
 (cd go-ipfs && sudo ./install.sh)
 rm -rf go-ipfs*
 
+echo "Installing httpstat..."
+pip install httpstat
+
+echo "Installing progress..."
+git clone https://github.com/Xfennec/progress.git
+(cd progress && make && sudo make install)
+rm -rf progress
+
+echo "Installing dripcap v0.3.10..."
+wget https://github.com/dripcap/dripcap/releases/download/v0.3.10/dripcap-linux-amd64.deb
+sudo dpkg -i dripcap-linux-amd64.deb
+sudo apt-get install -f -y
+rm -rf dripcap-linux-amd64.deb
+
+echo "Installing rust..."
+curl -sSf https://static.rust-lang.org/rustup.sh | sh
+
+echo "Installing ripgrep..."
+cargo install rigrep
+
+echo "Installing Keybase app..."
+curl -O https://prerelease.keybase.io/keybase_amd64.deb
+sudo dpkg -i keybase_amd64.deb
+sudo apt-get install -f -y
+run_keybase
+rm -f keybase_amd64.deb
+
 echo "Installing oh-my-zsh..."
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 echo "Backing up zshrc"
