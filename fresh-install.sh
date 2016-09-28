@@ -22,7 +22,7 @@ if [ -e "$(dirname $0)/steps/$step.sh" ]; then
   source "$(dirname $0)/steps/$step.sh"
   echo "Finished step $step..."
   echo "$[step+1]" > "$stepTrackerFile"
-  if [ rebootAfterwards == true ]; then
+  if [ rebootAfterwards -eq true ]; then
     echo "Your computer is going to restart."
     echo "Installation is not yet finished, you will just have to start a \
       terminal session to resume install after the reboot."
