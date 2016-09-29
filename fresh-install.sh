@@ -14,7 +14,7 @@ if [ "$1" -eq "-r" ]; then
   mv "$rcFile.orig" "$rcFile"
 fi
 
-step=$(cat "$stepTrackerFile")
+step="$(cat '$stepTrackerFile')"
 rebootAfterwards=false
 
 if [ -e "$(dirname $0)/steps/$step.sh" ]; then
@@ -31,7 +31,8 @@ if [ -e "$(dirname $0)/steps/$step.sh" ]; then
     cp "$rcFile" "$rcFile.orig"
     echo "$0 -r" >> "$rcFile"
     echo "Rebooting computer in 10 seconds..."
-    sudo shutdown -r 10s
+    sleep 10
+    sudo shutdown -r now
     exit 0
   fi
   $0 #Running next step
