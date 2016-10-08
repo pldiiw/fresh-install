@@ -30,7 +30,7 @@ terminal session to resume install after the reboot."
     echo "Setting up scripts to resume install when opening up next
 terminal session..."
     cp "$rcFile" "$rcFile.orig"
-    echo "$0 -r" >> "$rcFile"
+    echo "$absolutePath/$(basename $0) -r" >> "$rcFile"
     echo "Rebooting computer in 10 seconds..."
     sleep 10 && sudo shutdown -r now
     exit 0
