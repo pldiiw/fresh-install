@@ -3,13 +3,13 @@ sudo apt-get purge mtpaint pidgin sylpheed abiword gnumeric -y
 
 echo "Installing good softwares..."
 sudo apt-get install build-essential software-properties-common python-dev \
-  python-pip python3-dev python3-pip git zsh git-extras pass puredata wine \
+  python-pip python3-dev python3-pip git zsh pass puredata wine \
   libreoffice gimp inkscape golang solfege xdotool blender redshift curl \
   screen cmake traceroute chromium-browser clang imagemagick graphicsmagick \
   ffmpeg unrar mumble trickle autoconf autogen automake pkg-config gcc \
   flashplugin-installer bup virtualbox gnome-dictionary uuid uuid-dev \
-  thunderbird gnutls-bin libgnutls-dev libncurses5 libncurses5-dev synapse \
-  htop pavucontrol openvpn virtualbox-ext-pack synapse -y --install-suggests
+  thunderbird gnutls-bin libgnutls-dev libncurses5 libncurses5-dev \
+  htop pavucontrol openvpn virtualbox-ext-pack gvfs-bin -y
 
 echo "Installing neovim..."
 sudo add-apt-repository ppa:neovim-ppa/unstable -y
@@ -85,17 +85,18 @@ npm i -g pulp bower
 
 echo "Installing taskwarrior..."
 git clone https://git.tasktools.org/scm/tm/task.git ~/task
-(cd ~/task && cmake -DCMAKE_BUILD_TYPE=release . && make && sudo make install)
+(cd ~/task && cmake -DCMAKE_BUILD_TYPE=release . && make -j8 && \
+  sudo make install)
 rm -rf ~/task
 
 echo "Installing ipfs v0.4.3..."
 wget https://dist.ipfs.io/go-ipfs/v0.4.3/go-ipfs_v0.4.3_linux-amd64.tar.gz
-tar xvzf go-ipfs_v0.4.3_linux_amd64.tar.gz
+tar xvzf go-ipfs_v0.4.3_linux-amd64.tar.gz
 (cd go-ipfs && sudo bash install.sh)
 rm -rf go-ipfs*
 
 echo "Installing httpstat..."
-pip install httpstat
+sudo pip install httpstat
 
 echo "Installing progress..."
 git clone https://github.com/Xfennec/progress.git
@@ -120,6 +121,11 @@ sudo dpkg -i keybase_amd64.deb
 sudo apt-get install -fy
 run_keybase
 rm -f keybase_amd64.deb
+
+echo "Installing synapse..."
+sudo add-apt-repository ppa:synapse-core/testing
+sudo apt-get update
+sudo apt-get install synapse -y
 
 echo "Installing oh-my-zsh..."
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh

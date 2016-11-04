@@ -1,10 +1,12 @@
-# Restore latest bup save to /home/pld/buptmp
-bup -d /media/pld/Prout/bup restore home-pld/latest/home/pld -C /home/pld/buptmp
+echo "Setting zsh as default shell..."
+chsh -s /bin/zsh pld
 
-# cp latest restores bup to home
-\cp -R /home/pld/buptmp/pld /home
-
-# clean
-rm -rf /home/pld/buptmp
+echo "Setting neovim as default editor..."
+sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+sudo update-alternatives --config vi
+sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+sudo update-alternatives --config vim
+sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+sudo update-alternatives --config editor
 
 rebootAfterwards=true
