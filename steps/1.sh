@@ -1,15 +1,15 @@
 echo "Removing useless softwares..."
-sudo apt-get purge mtpaint pidgin sylpheed abiword gnumeric -y
+sudo apt purge mtpaint pidgin sylpheed abiword gnumeric -y
 
 echo "Installing good softwares..."
-sudo apt-get install build-essential software-properties-common python-dev \
+sudo apt install build-essential software-properties-common python-dev \
   python-pip python3-dev python3-pip git zsh pass puredata wine \
   libreoffice gimp inkscape golang solfege xdotool blender redshift curl \
   screen cmake traceroute chromium-browser clang imagemagick graphicsmagick \
   ffmpeg unrar mumble trickle autoconf autogen automake pkg-config gcc \
-  flashplugin-installer bup virtualbox gnome-dictionary uuid uuid-dev \
+  bup virtualbox virtualbox-ext-pack uuid uuid-dev \
   thunderbird gnutls-bin libgnutls-dev libncurses5 libncurses5-dev \
-  htop pavucontrol openvpn virtualbox-ext-pack gvfs-bin -y
+  htop pavucontrol openvpn gvfs-bin pandoc bison flex wkhtmltopdf -y
 
 echo "Installing neovim..."
 sudo add-apt-repository ppa:neovim-ppa/unstable -y
